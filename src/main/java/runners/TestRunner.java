@@ -19,7 +19,7 @@ import static java.util.List.of;
 @Listeners(UiTestListener.class)
 public class TestRunner {
 
-    private static final List<String> CHROME_OPTIONS = of(
+    protected static final List<String> CHROME_OPTIONS = of(
             "no-sandbox",
             "disable-site-isolation-trials",
             "ignore-certificate-errors",
@@ -33,7 +33,7 @@ public class TestRunner {
             "disable-dev-shm-usage"
     );
 
-    private static final ImmutableMap<String, Object> CHROME_PREFS = ImmutableMap.of(
+    protected static final ImmutableMap<String, Object> CHROME_PREFS = ImmutableMap.of(
             "plugins.always_open_pdf_externally", true,
             "intl.accept_languages", "en-us");
 
