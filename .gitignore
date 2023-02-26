@@ -46,15 +46,3 @@ debug.log
 .allure/
 allure-results/
 allure-report/
-commercial/allure-results/
-commercial/allure-report/
-sales/allure-results/
-sales/allure-report/
-build/*
-logs/*
-.DS_Store
-.directory
-debug.log
-.idea/
-target/
-sales/build/*
