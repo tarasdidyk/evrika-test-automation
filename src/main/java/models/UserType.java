@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum PersonType {
+public enum UserType {
     PHYSICAL("Физ. лицо"),
     LEGAL("Юридическое лицо");
 
