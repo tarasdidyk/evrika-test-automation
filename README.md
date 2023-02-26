@@ -6,13 +6,16 @@ This project is a test automation framework developed for https://evrika.wezom.a
 
 ### Technologies used:
 
-Java 11
-TestNG
-Lombok
-Maven
-Selenide
-Selenium
-Configuration:
+* Java 11
+* TestNG
+* Lombok
+* Maven
+* Selenide
+* Selenium
+* Allure 
+* Assertj
+
+### Configuration:
 
 The project is configured using the pom.xml file. Dependencies for each technology used are specified in this file.
 
