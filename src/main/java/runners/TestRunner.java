@@ -1,7 +1,10 @@
 package runners;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.collect.ImmutableMap;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import utils.UiTestListener;
 
@@ -16,7 +19,7 @@ import static java.util.List.of;
 @Listeners(UiTestListener.class)
 public class TestRunner {
 
-    public static List<String> CHROME_OPTIONS = of(
+    private static final List<String> CHROME_OPTIONS = of(
             "no-sandbox",
             "disable-site-isolation-trials",
             "ignore-certificate-errors",
@@ -30,11 +33,12 @@ public class TestRunner {
             "disable-dev-shm-usage"
     );
 
-    public static ImmutableMap<String, Object> CHROME_PREFS = ImmutableMap.of(
+    private static final ImmutableMap<String, Object> CHROME_PREFS = ImmutableMap.of(
             "plugins.always_open_pdf_externally", true,
             "intl.accept_languages", "en-us");
 
-    protected void setUpBrowser() {
+    @BeforeClass(alwaysRun = true)
+    private void setUpBrowser() {
         Configuration.timeout = ofSeconds(90).toMillis();
         Configuration.browserSize = "1920x1080";
         Configuration.screenshots = false;
@@ -51,5 +55,10 @@ public class TestRunner {
                 .manage()
                 .timeouts()
                 .scriptTimeout(ofSeconds(120));
+    }
+
+    @AfterMethod(alwaysRun = true)
+    private void closeWebDriver() {
+        WebDriverRunner.closeWebDriver();
     }
 }
