@@ -1,7 +1,7 @@
 package modals;
 
 import io.qameta.allure.Step;
-import models.PersonType;
+import models.UserType;
 import pages.PersonalDataPage;
 
 import static com.codeborne.selenide.Condition.*;
@@ -17,9 +17,9 @@ public class RegistrationModal {
     private final String FIELD_TEMPLATE_LOCATOR = BLOCK_LOCATOR + "//input[@name = '%s']";
     private final long delayBetweenInputs = 300;
 
-    @Step("Registration modal: Selected {personType} person type")
-    public RegistrationModal selectPersonType(PersonType personType) {
-        var radioBoxLocator = format("//span[text() = '%s']", personType.getName());
+    @Step("Registration modal: Selected {userType} user type")
+    public RegistrationModal selectUserType(UserType userType) {
+        var radioBoxLocator = format("//span[text() = '%s']", userType.getName());
         var radioBoxSelectElement = $x(radioBoxLocator + "/preceding-sibling::input");
         if (!radioBoxSelectElement.isSelected()) {
             $x(radioBoxLocator).click();
@@ -89,7 +89,10 @@ public class RegistrationModal {
         var checkBoxLocator = BLOCK_LOCATOR + "//label[@class = 'input-choice']/span";
         var checkBoxSelectElement = $x(checkBoxLocator + "/preceding-sibling::input");
         if (!checkBoxSelectElement.isSelected()) {
-            var checkBoxLocation = $x(checkBoxLocator + "/span").getLocation();
+            var checkBoxLocation = $x(checkBoxLocator)
+                    .scrollIntoView(true)
+                    .shouldBe(visible)
+                    .getLocation();
             actions()
                     .moveByOffset(checkBoxLocation.getX(), checkBoxLocation.getY())
                     .click()

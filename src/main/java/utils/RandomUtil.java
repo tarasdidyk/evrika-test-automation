@@ -37,6 +37,6 @@ public class RandomUtil {
     }
 
     public static String getRandomPassword() {
-        return "Test!#2" + new Random().nextInt(100);
+        return "Test!2345" + new Random().nextInt(100);
     }
 }
